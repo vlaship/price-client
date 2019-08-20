@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import { withService } from '../hoc-helpers';
+import { withService } from './service';
 
 import ErrorButton from '../error-button/error-button';
-
-import './product-details.css';
 
 const Record = ({ item, field, label }) => {
   return (

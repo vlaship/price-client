@@ -1,17 +1,13 @@
 import React, { Component } from 'react';
 
-import Header from '../header';
-import ErrorBoundry from '../error-boundry';
-import Service from '../../services/service';
+import Header from './header';
+import ErrorBoundry from './service/error-boundry';
+import Service from '../services/service';
 
-import {
-  ListPage,
-  LoginPage
-} from '../pages';
+import ListPage from './list-page';
+import LoginPage from './login-page';  
 
-import { ServiceProvider } from '../service-context';
-
-import './app.css';
+import { ServiceProvider } from './service/service-context';
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
@@ -24,12 +20,11 @@ export default class App extends Component {
   render() {
 
     return (
-      <ErrorBoundry>
+      // <ErrorBoundry>
         <ServiceProvider value={this.state.service} >
           <Router>
             <div className="app">
               <Header />
-
               <Switch>
                 <Route path="/" component={ListPage} />
                 <Route path="/login" component={LoginPage} />
@@ -40,7 +35,7 @@ export default class App extends Component {
             </div>
           </Router>
         </ServiceProvider>
-      </ErrorBoundry>
+      //</ErrorBoundry>
     );
   }
 }
