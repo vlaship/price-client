@@ -2,6 +2,7 @@ import React from 'react'
 import ProductTableHead from './product-table-head'
 import ProductTableBody from './product-table-body'
 import {Paper, Table} from "@material-ui/core";
+import TablePaginationActions from "@material-ui/core/TablePagination/TablePaginationActions";
 
 class ProductTable extends React.Component {
 
@@ -9,7 +10,7 @@ class ProductTable extends React.Component {
         if (this.props.products && this.props.products.length > 0) {
             return (
                 <Paper style={{'margin': '.5em'}}>
-                    <Table>
+                    <Table size="small">
                         <ProductTableHead/>
                         <ProductTableBody
                             currentPercent={this.props.currentPercent}

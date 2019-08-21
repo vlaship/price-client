@@ -1,32 +1,21 @@
 import React, {Fragment} from 'react';
-import {withRouter} from 'react-router-dom';
-import {Container, Paper} from "@material-ui/core";
+import {Container} from "@material-ui/core";
 import Find from "../find/find";
 import ProductTable from "../table/product-table";
 import Header from "../header/header";
-import {ServiceProvider} from "../service/service-context";
+import withService from "../service/with-service";
 
-const emptyProducts = [];
-const products = [
-    {
-        vendorCode: '1000.1000.1000',
-        productName: 'asda sdfasdf asfas dfas dfas fas  fdsf asfdsad fadf asdf',
-        price: 100.11
-    }, {
-        vendorCode: '2000.2000.2000',
-        productName: 'asda sdfasdf asfas dfas dfas fas  fdsf asfdsad fadf asdf',
-        price: 200.11
-    }, {
-        vendorCode: '3000.3000.3000',
-        productName: 'asda sdfasdf asfas dfas dfas fas  fdsf asfdsad fadf asdf',
-        price: 300.11
-    }
-];
-
-export default class ProductPage extends React.Component {
+class ProductPage extends React.Component {
 
     state = {
-        currentPercent: 15
+        currentPercent: 15,
+        products: []
+    };
+
+    handleSearch = search => {
+        // const list = this.props.service.findAll(search);
+        this.props.service.findAllByProductName(search)
+            .then((list) => this.setState({products: list}));
     };
 
     onCurrentPercentChanged = currentPercent => this.setState({currentPercent: currentPercent});
@@ -36,14 +25,16 @@ export default class ProductPage extends React.Component {
             <Header/>
             <Container maxWidth='xl'>
                 <Find
+                    search={this.handleSearch}
                     currentPercent={this.state.currentPercent}
                     onCurrentPercentChanged={this.onCurrentPercentChanged}
                 />
                 <ProductTable
                     currentPercent={this.state.currentPercent}
-                    products={emptyProducts}
+                    products={this.state.products}
                 />
             </Container>
         </Fragment>;
 }
-//export default withRouter(ProductPage);
+
+export default withService(ProductPage);

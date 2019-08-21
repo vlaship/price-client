@@ -4,10 +4,27 @@ import FindPercent from "./find-percent";
 
 export default class Find extends React.Component {
 
+    state = {
+        search: null
+    };
+
+    onSearchChange = event => this.setState({search: event.target.value});
+
+    onKeyPress = event => {
+        if (event.key === 'Enter') {
+            this.handleSearch()
+        }
+    };
+
+    handleSearch = () => {
+        if(!this.state.search) return;
+        this.props.search(this.state.search);
+    };
+
     render = () =>
         <Container style={{'margin': '1em'}}>
             <FormControl
-                fullWidth={true}>
+                         fullWidth={true}>
                 <Grid container spacing={3}>
                     <Grid item xs>
                         <TextField
@@ -17,6 +34,9 @@ export default class Find extends React.Component {
                             fullWidth={true}
                             margin="dense"
                             variant="outlined"
+                            value={this.state.search}
+                            onChange={this.onSearchChange}
+                            onKeyPress={this.onKeyPress}
                         /></Grid>
                     <Grid item xs={2}>
                         <Button
@@ -24,11 +44,13 @@ export default class Find extends React.Component {
                             variant="contained"
                             color="primary"
                             size='large'
+                            onClick={this.handleSearch}
+                            onKeyPress={this.onKeyPress}
                         >
                             Найти
                         </Button>
                     </Grid>
-                    <Grid item xs={2}>
+                    <Grid item xs={3}>
                         <FindPercent
                             currentPercent={this.props.currentPercent}
                             onCurrentPercentChanged={this.props.onCurrentPercentChanged}

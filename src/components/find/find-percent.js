@@ -36,6 +36,7 @@ export default class FindPercent extends React.Component {
                     type='number'
                     margin='dense'
                     placeholder='процент'
+                    label='Процент'
                     variant='outlined'
                     onChange={this.onPercentChange}
                     value={this.state.percent}

@@ -4,7 +4,7 @@ import {TableBody} from "@material-ui/core";
 
 class ProductTableBody extends React.Component {
 
-    renderRow({vendorCode, productName, price}) {
+    renderRow({vendorCode, nameProduct: productName, price}) {
         return (
             <ProductTableRow
                 currentPercent={this.props.currentPercent}

@@ -1,8 +1,8 @@
 import React from 'react';
 import {AppBar, Link, Toolbar, Typography, Container, Button} from "@material-ui/core";
+import Update from "../update-db/update-db";
 
-export default function Header({onClickUpdate, lastUpdate = 'НИКОГДА'}) {
-
+export default function Header() {
 
     return (
         <AppBar position="relative">
@@ -13,12 +13,7 @@ export default function Header({onClickUpdate, lastUpdate = 'НИКОГДА'}) {
                     </Link>
                 </Typography>
                 <Container maxWidth="sm"/>
-                <Button
-                    variant="contained" color="secondary"
-                    // onClick={onClickUpdate.bind(this)}
-                >
-                    Обновить ({lastUpdate})
-                </Button>
+                <Update/>
             </Toolbar>
         </AppBar>
     )
