@@ -46,7 +46,6 @@ export default class FindPercent extends React.Component {
                 <ButtonGroup size="small"
                              style={{"marginTop": "0.7em"}}
                              variant="contained"
-                             color="inherit"
                 >
                     <Button onClick={this.onClickPlus}>+</Button>
                     <Button onClick={this.onClickMinus}>-</Button>
