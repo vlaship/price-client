@@ -10,25 +10,48 @@ class ProductPage extends React.Component {
     state = {
         currentPercent: 15,
         products: [],
-        fetching: false
+        search: '',
+        fetching: false,
+        pageNumber: 0,
+        pageSize: 20,
+        count: 0
     };
 
-    onProductListFetched = (list) => {
-        this.setState({products: list, fetching: false})
+    onProductListFetched = (resp) => {
+        this.setState({
+            fetching: false,
+            products: resp.content,
+            size: resp.size,
+            count: resp.totalElements,
+            page: resp.number
+        });
     };
 
-    handleSearch = search => {
-        this.setState({products: [], fetching: true});
-        this.props.service.findAllByProductName(search)
+    newSearch = search => {
+        this.setState({products: [], fetching: true, search: search, page: 0});
+        this.searchPage(search, 0);
+    };
+
+    onChangePage = (e, page) => {
+        this.setState({products: [], fetching: true, page: page});
+        this.searchPage(this.state.search, page);
+    };
+
+    searchPage = (search, page) => {
+        this.props.service.findPageByProductName(search, page)
             .then(this.onProductListFetched);
     };
 
     renderProductTable = () => {
-        if (this.state.products.length > 0) {
+        if (this.state.products && this.state.products.length > 0) {
             return (
                 <ProductTable
                     currentPercent={this.state.currentPercent}
                     products={this.state.products}
+                    onChangePage={this.onChangePage}
+                    page={this.state.page}
+                    count={this.state.count}
+                    size={this.state.size}
                 />
             )
         }
@@ -42,7 +65,7 @@ class ProductPage extends React.Component {
             <Header/>
             <Container maxWidth='xl'>
                 <Find
-                    search={this.handleSearch}
+                    search={this.newSearch}
                     currentPercent={this.state.currentPercent}
                     onCurrentPercentChanged={this.onCurrentPercentChanged}
                 />
