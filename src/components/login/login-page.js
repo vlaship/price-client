@@ -4,19 +4,18 @@ import React from "react";
 // import * as actionCreators from "../../actions/indexActions";
 // import {hashHistory} from "react-router";
 import LoginFrom from "./login-form";
-import {Box, Typography} from "@material-ui/core";
-import TextField from "@material-ui/core/TextField";
+import {Typography} from "@material-ui/core";
 
-const mapStateToProps = (state) => ({
-    tokenIsRefreshing: state.auth.tokenIsRefreshing,
-    isAuthenticating: state.auth.isAuthenticating,
-    isAuthenticated: state.auth.isAuthenticated,
-    statusText: state.auth.statusText,
-});
+// const mapStateToProps = (state) => ({
+//     tokenIsRefreshing: state.auth.tokenIsRefreshing,
+//     isAuthenticating: state.auth.isAuthenticating,
+//     isAuthenticated: state.auth.isAuthenticated,
+//     statusText: state.auth.statusText,
+// });
 
-const mapDispatchToProps = (dispatch) => ({
-    // actions: bindActionCreators(actionCreators, dispatch)
-});
+// const mapDispatchToProps = (dispatch) => ({
+//     // actions: bindActionCreators(actionCreators, dispatch)
+// });
 
 const back = {
     display: 'flex',
@@ -119,7 +118,6 @@ export default class LoginPage extends React.Component {
                         <Typography variant="h4" color="inherit" noWrap style={{'margin': '10px'}}>
                             pila.by/price
                         </Typography>
-                        <Box> </Box>
                         <LoginFrom
                             tokenIsRefreshing={this.props.tokenIsRefreshing}
                             isAuthenticated={this.props.isAuthenticated}

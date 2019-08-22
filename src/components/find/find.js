@@ -5,7 +5,7 @@ import FindPercent from "./find-percent";
 export default class Find extends React.Component {
 
     state = {
-        search: null
+        search: ""
     };
 
     onSearchChange = event => this.setState({search: event.target.value});

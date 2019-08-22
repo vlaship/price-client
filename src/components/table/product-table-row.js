@@ -1,5 +1,5 @@
 import React, {Fragment} from 'react'
-import {TableCell, TableRow} from "@material-ui/core";
+import {Link, TableCell, TableRow} from "@material-ui/core";
 
 class ProductTableRow extends React.Component {
 
@@ -47,9 +47,9 @@ class ProductTableRow extends React.Component {
             <Fragment>
                 <TableRow hover={true}>
                     <TableCell align='center'>
-                        <a href={url} target="_blank">
+                        <Link href={url} target="_blank">
                             {vendorCode}
-                        </a>
+                        </Link>
                     </TableCell>
                     <TableCell align='left'>
                         {productName}

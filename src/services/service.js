@@ -1,6 +1,6 @@
 export default class Service {
 
-    _apiBase = 'http://localhost:8080';
+    _apiBase = 'http://localhost:9090/api';
 
     getResource = async (url) => {
         const res = await fetch(`${this._apiBase}${url}`);
@@ -13,11 +13,15 @@ export default class Service {
     };
 
     getLastUpdate = async () => {
-        return await this.getResource(`/last`);
+        const res = await fetch(`${this._apiBase}/last`);
+        if (!res.ok) {
+            throw new Error(`Could not fetch '/last', received ${res.status}`)
+        }
+        return await res.text();
     };
 
     findAllByProductName = async (query) => {
-        return await this.getResource(`/list/${query}`);
+        return await this.getResource(`/find/${query}`);
     };
 
     getTest = () => {
@@ -39,7 +43,8 @@ export default class Service {
     };
 
     update = async () => {
-        return await this.getResource(`/update`);
+        const res = await fetch(`${this._apiBase}/update`);
+        if (!res.ok) throw new Error(`Could not fetch '/update', received ${res.status}`);
     };
 
     getBackEndVersion = async () => {

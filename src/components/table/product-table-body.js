@@ -4,9 +4,10 @@ import {TableBody} from "@material-ui/core";
 
 class ProductTableBody extends React.Component {
 
-    renderRow({vendorCode, nameProduct: productName, price}) {
+    renderRow({id, vendorCode, nameProduct: productName, price}) {
         return (
             <ProductTableRow
+                key={id}
                 currentPercent={this.props.currentPercent}
                 vendorCode={vendorCode}
                 productName={productName}
