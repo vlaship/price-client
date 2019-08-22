@@ -17,14 +17,13 @@ export default class Find extends React.Component {
     };
 
     handleSearch = () => {
-        if(!this.state.search) return;
+        if (!this.state.search) return;
         this.props.search(this.state.search);
     };
 
     render = () =>
         <Container style={{'margin': '1em'}}>
-            <FormControl
-                         fullWidth={true}>
+            <FormControl fullWidth={true}>
                 <Grid container spacing={3}>
                     <Grid item xs>
                         <TextField

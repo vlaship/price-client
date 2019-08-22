@@ -1,10 +1,6 @@
 import React from "react";
-import {Button, LinearProgress} from "@material-ui/core";
+import {Button, LinearProgress, Dialog, DialogTitle, DialogContent, DialogActions} from "@material-ui/core";
 import withService from "../service/with-service";
-import Dialog from "@material-ui/core/Dialog";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogActions from "@material-ui/core/DialogActions";
 
 const questionMessage = 'Обновить базу цен?';
 const updatingMessage = 'Обновление ...';
